@@ -1,14 +1,14 @@
 {
-  "name": "react-scripts-ts",
+  "name": "react-scripts-ts-plugins",
   "version": "2.12.0",
   "description": "Configuration and scripts for Create React App.",
-  "repository": "wmonk/create-react-app",
+  "repository": "veldman/create-react-app-typescript",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=6"
   },
   "bugs": {
-    "url": "https://github.com/wmonk/create-react-app/issues"
+    "url": "https://github.com/veldman/create-react-app-typescript/issues"
   },
   "files": [
     "bin",
@@ -30,6 +30,7 @@
     "file-loader": "0.11.2",
     "fork-ts-checker-webpack-plugin": "^0.2.8",
     "fs-extra": "3.0.1",
+    "glob": "^7.1.2",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "object-assign": "4.1.1",

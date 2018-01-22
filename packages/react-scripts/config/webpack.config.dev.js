@@ -31,6 +31,8 @@ const publicUrl = '';
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
 
+const includePaths = [paths.appSrc].concat(paths.pluginPaths);
+
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
@@ -41,7 +43,7 @@ module.exports = {
   // These are the "entry points" to our application.
   // This means they will be the "root" imports that are included in JS bundle.
   // The first two entry points enable "hot" CSS and auto-refreshes for JS.
-  entry: [
+  entry: paths.pluginDevPaths.concat([
     // We ship a few polyfills by default:
     require.resolve('./polyfills'),
     // Include an alternative client for WebpackDevServer. A client's job is to
@@ -60,7 +62,7 @@ module.exports = {
     // We include the app code last so that if there is a runtime error during
     // initialization, it doesn't blow up the WebpackDevServer client, and
     // changing JS code would still trigger a refresh.
-  ],
+  ]),
   output: {
     // Add /* filename */ comments to generated require()s in the output.
     pathinfo: true,
@@ -124,7 +126,7 @@ module.exports = {
       // please link the files into your node_modules/ and let module-resolution kick in.
       // Make sure your source files are compiled, as they will not be processed in any way.
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
-      new TsconfigPathsPlugin({configFile: paths.appTsConfig})
+      new TsconfigPathsPlugin({ configFile: paths.appTsConfig }),
     ],
   },
   module: {
@@ -138,7 +140,7 @@ module.exports = {
         test: /\.(js|jsx|mjs)$/,
         loader: require.resolve('source-map-loader'),
         enforce: 'pre',
-        include: paths.appSrc,
+        include: includePaths,
       },
       {
         // "oneOf" will traverse all following loaders until one will
@@ -159,7 +161,7 @@ module.exports = {
           // Compile .tsx?
           {
             test: /\.(ts|tsx)$/,
-            include: paths.appSrc,
+            include: includePaths,
             use: [
               {
                 loader: require.resolve('ts-loader'),

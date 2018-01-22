@@ -46,6 +46,8 @@ if (env.stringified['process.env'].NODE_ENV !== '"production"') {
 // Note: defined here because it will be used more than once.
 const cssFilename = 'static/css/[name].[contenthash:8].css';
 
+const includePaths = [paths.appSrc].concat(paths.pluginPaths);
+
 // ExtractTextPlugin expects the build output to be flat.
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
 // However, our output is structured with css, js and media folders.
@@ -130,7 +132,7 @@ module.exports = {
       // please link the files into your node_modules/ and let module-resolution kick in.
       // Make sure your source files are compiled, as they will not be processed in any way.
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
-      new TsconfigPathsPlugin({configFile: paths.appTsConfig})
+      new TsconfigPathsPlugin({ configFile: paths.appTsConfig }),
     ],
   },
   module: {
@@ -145,13 +147,13 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         loader: require.resolve('tslint-loader'),
         enforce: 'pre',
-        include: paths.appSrc,
+        include: includePaths,
       },
       {
         test: /\.(js|jsx|mjs)$/,
         loader: require.resolve('source-map-loader'),
         enforce: 'pre',
-        include: paths.appSrc,
+        include: includePaths,
       },
       {
         // "oneOf" will traverse all following loaders until one will
@@ -171,7 +173,7 @@ module.exports = {
           // Compile .tsx?
           {
             test: /\.(ts|tsx)$/,
-            include: paths.appSrc,
+            include: includePaths,
             use: [
               {
                 loader: require.resolve('ts-loader'),
