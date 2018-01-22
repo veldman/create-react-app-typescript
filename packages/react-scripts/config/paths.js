@@ -81,7 +81,7 @@ module.exports = {
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
   pluginPaths: getNamespacedPlugins(),
-  pluginDevPaths: getNamespacedPlugins(path.join('src', 'index.js')),
+  pluginDevPaths: getNamespacedPlugins(path.join('src', 'index.ts')),
 };
 
 // @remove-on-eject-begin
@@ -106,7 +106,7 @@ module.exports = {
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
   pluginPaths: getNamespacedPlugins(),
-  pluginDevPaths: getNamespacedPlugins(path.join('src', 'index.js')),
+  pluginDevPaths: getNamespacedPlugins(path.join('src', 'index.ts')),
   // These properties only exist before ejecting:
   ownPath: resolveOwn('.'),
   ownNodeModules: resolveOwn('node_modules'), // This is empty on npm 3
@@ -141,7 +141,7 @@ if (
     publicUrl: getPublicUrl(resolveOwn('package.json')),
     servedPath: getServedPath(resolveOwn('package.json')),
     pluginPaths: getNamespacedPlugins(),
-    pluginDevPaths: getNamespacedPlugins(path.join('src', 'index.js')),
+    pluginDevPaths: getNamespacedPlugins(path.join('src', 'index.ts')),
     // These properties only exist before ejecting:
     ownPath: resolveOwn('.'),
     ownNodeModules: resolveOwn('node_modules'),
