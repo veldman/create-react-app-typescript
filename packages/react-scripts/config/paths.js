@@ -48,7 +48,7 @@ function getServedPath(appPackageJson) {
 }
 
 function getNamespacedPlugins(indexPath = '/') {
-  const namespace = require(path.join(process.cwd(), '../package.json')).name;
+  const namespace = require(path.join(process.cwd(), 'package.json')).name;
   const pluginNodeModules = glob.sync(
     resolveApp(`node_modules/${namespace}.*`)
   );
